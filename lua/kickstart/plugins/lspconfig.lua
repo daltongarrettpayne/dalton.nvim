@@ -208,10 +208,22 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        ruff = {},
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          settings = {
+            pyright = { disableOrganizeImports = true },
+            python = {
+              analysis = {
+                -- ignore = { '*' },
+                -- You can tweak analysis settings here if needed
+              },
+            },
+          },
+          -- Disable formatting capability for Pyright
+          on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

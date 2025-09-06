@@ -65,6 +65,3 @@ vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, { desc = 
 vim.keymap.set('n', '<leader>wl', function()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = '[W]orkspace [L]ist Folders' })
-
---
--- vim: ts=2 sts=2 sw=2 et
